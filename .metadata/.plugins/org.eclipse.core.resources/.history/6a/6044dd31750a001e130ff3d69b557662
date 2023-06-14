@@ -1,0 +1,5 @@
+package com.LoginSignup.LoginSignup.Controller;
+
+public class UserController {
+
+}

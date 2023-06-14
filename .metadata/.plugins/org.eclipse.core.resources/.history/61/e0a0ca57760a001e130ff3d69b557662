@@ -1,0 +1,39 @@
+package com.LoginSignup.LoginSignup.Controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.LoginSignup.LoginSignup.service.UserService;
+import com.LoginSignup.LoginSignup.web.DTO.UserRegestrationDTO;
+
+@RestController
+@RequestMapping("/regestration")
+public class UserController {
+private UserService userservice;
+
+public UserController(UserService userservice) {
+	super();
+	this.userservice = userservice;
+}
+@ModelAttribute("user")
+public UserRegestrationDTO userregestrationdto()
+{
+	return new UserRegestrationDTO();
+}
+@GetMapping
+public String show()
+{
+	return "Regestration";
+}
+@PostMapping
+public String RegesterUserAccount(@ModelAttribute("User") UserRegestrationDTO regestrationdto)
+{
+	userservice.Save(regestrationdto);
+	return "redirect:/regestration?sucess";
+	
+}
+
+}

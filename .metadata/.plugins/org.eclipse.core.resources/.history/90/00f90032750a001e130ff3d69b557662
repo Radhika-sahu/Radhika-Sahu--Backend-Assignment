@@ -1,0 +1,5 @@
+package com.LoginSignup.LoginSignup.Repo;
+
+public interface UserRepo {
+
+}

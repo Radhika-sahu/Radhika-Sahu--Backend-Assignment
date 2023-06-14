@@ -1,0 +1,75 @@
+package com.LoginSignup.LoginSignup.Entity;
+
+import java.util.Collection;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="user",uniqueConstraints = @UniqueConstraint(columnNames="email"))
+public class User {
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    //@Column(name="user_id")
+	private long user_id;
+	private String fname;
+	private String lname;
+	private String email;
+	private String password;
+	
+  @ManyToMany(fetch=FetchType.EAGER ,cascade=CascadeType.ALL)
+  @JoinTable(
+       name="users_role",
+       joinColumns=@JoinColumn(
+    		   name="user_id", referencedColumnName="id"),
+       inverseJoinColumns=@JoinColumn(
+    		   name="id", referencedColumnName="id")
+       
+       )
+	private Collection<Role> roles;
+	public long getId() {
+		return user_id;
+	}
+	public void setId(long id) {
+		this.user_id = id;
+	}
+	public String getFname() {
+		return fname;
+	}
+	public void setFname(String fname) {
+		this.fname = fname;
+	}
+	public String getLname() {
+		return lname;
+	}
+	public void setLname(String lname) {
+		this.lname = lname;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public Collection<Role> getRoles() {
+		return roles;
+	}
+	public void setRoles(Collection<Role> roles) {
+		this.roles = roles;
+	}
+	public User(String fname, String lname, String email, String password, Collection<Role> roles) {
+		super();
+		this.fname = fname;
+		this.lname = lname;
+		this.email = email;
+		this.password = password;
+		this.roles = roles;
+	}
+	
+	
+}

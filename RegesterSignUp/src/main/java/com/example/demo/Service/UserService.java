@@ -1,0 +1,30 @@
+package com.example.demo.Service;
+
+import org.springframework.stereotype.Service;
+
+import com.example.demo.Entity.User;
+import com.example.demo.Repo.UserRepository;
+
+
+@Service
+public class UserService {
+    private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public User registerUser(User user) {
+        // Perform validation and business logic for registration
+        // For simplicity, assume the user object is valid
+        return userRepository.save(user);
+    }
+
+    public User loginUser(String username, String password) {
+        User user = userRepository.findByUsername(username);
+        if (user != null && user.getPassword().equals(password)) {
+            return user;
+        }
+        return null;
+    }
+}

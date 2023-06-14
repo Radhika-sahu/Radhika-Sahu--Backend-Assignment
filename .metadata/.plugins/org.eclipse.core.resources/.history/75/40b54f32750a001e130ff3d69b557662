@@ -1,0 +1,5 @@
+package com.LoginSignup.LoginSignup.service;
+
+public interface UserService {
+
+}

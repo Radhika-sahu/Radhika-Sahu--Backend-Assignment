@@ -1,0 +1,5 @@
+package com.LoginSignup.LoginSignup.web.DTO;
+
+public class UserRegestrationDTO {
+
+}
